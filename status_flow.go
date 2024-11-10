@@ -11,12 +11,15 @@ import (
 )
 
 // Status represents a state in the flow and its potential next statuses.
+// It is used to define the nodes and edges of the status flow graph.
 type Status struct {
 	Name       string      // The name of the current status
 	NextStatus []string    // A list of statuses that can be transitioned to from the current status
 }
 
 // GenerateDOT creates a DOT representation of the statuses and their flows.
+// It takes a slice of Status objects and returns a string in DOT graph format.
+// The generated graph is left-to-right oriented with rounded blue boxes for nodes.
 func GenerateDOT(statuses []Status) string {
 	dot := "digraph G {\n"  // Start of the DOT graph definition
 	dot += "rankdir=LR;\n"  // Set the direction of the graph to left-to-right
